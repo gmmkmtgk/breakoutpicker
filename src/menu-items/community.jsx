@@ -9,28 +9,36 @@ const icons = {
 
 // ==============================|| MENU ITEMS - EXTRA PAGES ||============================== //
 
-const pages = {
-  id: 'authentication',
-  title: 'Authentication',
+const community = {
+  id: 'community',
+  title: 'Community',
   type: 'group',
   children: [
     {
-      id: 'login1',
-      title: 'Login',
+      id: 'voices',
+      title: 'Voices',
       type: 'item',
-      url: '/login',
+      url: '/voices',
       icon: icons.LoginOutlined,
       target: true
     },
     {
-      id: 'register1',
-      title: 'Register',
+      id: 'videos',
+      title: 'Videos',
       type: 'item',
-      url: '/register',
+      url: '/videos',
+      icon: icons.ProfileOutlined,
+      target: true
+    },
+    {
+      id: 'shorts',
+      title: 'Shorts',
+      type: 'item',
+      url: '/shorts',
       icon: icons.ProfileOutlined,
       target: true
     }
   ]
 };
 
-export default pages;
+export default community;
