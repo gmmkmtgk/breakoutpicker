@@ -8,3 +8,4 @@ https://mui.com/store/previews/mantis-free-react-admin-dashboard-template/
 
 icons:
 https://stackoverflow.com/questions/48644960/how-to-add-a-custom-image-icon-in-antd-design-menu
+https://ant.design/components/icon

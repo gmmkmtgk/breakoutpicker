@@ -24,16 +24,7 @@ const MainRoutes = {
       element: <DashboardDefault />
     },
     {
-      path: 'dashboard',
-      children: [
-        {
-          path: 'default',
-          element: <DashboardDefault />
-        }
-      ]
-    },
-    {
-      path: 'shadow',
+      path: 'ai-baskets',
       element: <Shadow />
     }
   ]
