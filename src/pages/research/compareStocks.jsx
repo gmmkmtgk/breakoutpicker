@@ -1,5 +1,6 @@
 import React from 'react';
 import MainCard from 'components/MainCard';
+import { Typography } from '@mui/material';
 
 const CompareStocks = () => {
   return (

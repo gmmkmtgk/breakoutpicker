@@ -24,6 +24,13 @@ const portfolio = {
       icon: icons.OpenAIOutlined
     },
     {
+      id: 'correlatedstocks',
+      title: 'Correlated Stocks',
+      type: 'item',
+      url: '/correlated-stocks',
+      icon: icons.OpenAIOutlined
+    },
+    {
       id: 'peopleinvest',
       title: 'People Invest',
       type: 'item',
@@ -42,6 +49,13 @@ const portfolio = {
       title: 'Momentum Stocks',
       type: 'item',
       url: '/momentum-stocks',
+      icon: icons.FireOutlined
+    },
+    {
+      id: 'compareindex',
+      title: 'Compare Index',
+      type: 'item',
+      url: '/compare-index',
       icon: icons.FireOutlined
     }
   ]

@@ -21,32 +21,28 @@ const learn = {
       title: 'Roadmap',
       type: 'item',
       url: '/roadmap',
-      icon: icons.NodeCollapseOutlined,
-      target: true
+      icon: icons.NodeCollapseOutlined
     },
     {
       id: 'books',
       title: 'Books',
       type: 'item',
       url: '/books',
-      icon: icons.BookOutlined,
-      target: true
+      icon: icons.BookOutlined
     },
     {
       id: 'courses',
       title: 'Courses',
       type: 'item',
       url: '/courses',
-      icon: icons.VideoCameraOutlined,
-      target: true
+      icon: icons.VideoCameraOutlined
     },
     {
       id: 'workshops',
       title: 'Workshops',
       type: 'item',
       url: '/workshops',
-      icon: icons.ScheduleOutlined,
-      target: true
+      icon: icons.ScheduleOutlined
     }
   ]
 };
