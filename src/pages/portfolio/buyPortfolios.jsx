@@ -1,5 +1,3 @@
-// src/pages/portfolio/buyPortfolios.jsx
-
 import React from 'react';
 import MainCard from 'components/MainCard';
 
@@ -14,4 +12,3 @@ const BuyPortfolios = () => {
 };
 
 export default BuyPortfolios;
-
