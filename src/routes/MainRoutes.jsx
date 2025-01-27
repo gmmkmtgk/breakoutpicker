@@ -46,7 +46,7 @@ const MainRoutes = {
     },
     {
       path: 'buy-portfolio',
-      element: <AIBaskets />
+      element: <BuyPortfolios />
     },
     {
       path: 'momentum-stocks',
@@ -88,12 +88,33 @@ const MainRoutes = {
       path: 'roadmap',
       element: <Roadmap />
     },
-    { path: 'books', element: <Books /> },
-    { path: 'courses', element: <Courses /> },
-    { path: 'workshops', element: <Workshops /> },
+    {
+      path: 'books',
+      element: <Books />
+    },
+    {
+      path: 'courses',
+      element: <Courses />
+    },
+    {
+      path: 'workshops',
+      element: <Workshops />
+    },
     {
       path: 'ath-ipos',
       element: <AthIpos />
+    },
+    {
+      path: 'brokers',
+      element: <Brokers />
+    },
+    {
+      path: 't&c',
+      element: <Terms />
+    },
+    {
+      path: 'contactus',
+      element: <Contactus />
     }
   ]
 };
