@@ -36,5 +36,10 @@ export default defineConfig({
     open: true,
     // this sets a default port to 3000
     port: 3000
+  },
+  build: {
+    rollupOptions: {
+      external: ['pages/portfolio/BuyPortfolios'] // Mark the module as external to avoid resolution issues
+    }
   }
 });
