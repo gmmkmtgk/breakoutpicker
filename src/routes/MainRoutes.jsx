@@ -27,11 +27,11 @@ const Financials = Loadable(lazy(() => import('pages/research/Financials.jsx')))
 const News = Loadable(lazy(() => import('pages/research/News.jsx')));
 const WaBot = Loadable(lazy(() => import('pages/research/WaBot.jsx')));
 
-const AthIpos = Loadable(lazy(() => import('pages/ipos/ath-ipos.jsx')));
+const AthIpos = Loadable(lazy(() => import('pages/ipos/AthIpos.jsx')));
 
-const Voices = Loadable(lazy(() => import('pages/community/voices.jsx')));
-const Videos = Loadable(lazy(() => import('pages/community/videos.jsx')));
-const Shorts = Loadable(lazy(() => import('pages/community/shorts.jsx')));
+const Voices = Loadable(lazy(() => import('pages/community/Voices.jsx')));
+const Videos = Loadable(lazy(() => import('pages/community/Videos.jsx')));
+const Shorts = Loadable(lazy(() => import('pages/community/Shorts.jsx')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
