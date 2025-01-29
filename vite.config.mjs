@@ -1,10 +1,7 @@
-// https://github.com/vitejs/vite/discussions/3448
 import path from 'path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import jsconfigPaths from 'vite-jsconfig-paths';
-
-// ----------------------------------------------------------------------
 
 export default defineConfig({
   plugins: [react(), jsconfigPaths()],
@@ -26,20 +23,23 @@ export default defineConfig({
     ]
   },
   server: {
-    // this ensures that the browser opens upon server start
-    open: true,
-    // this sets a default port to 3000
-    port: 3000
+    open: true, // this ensures that the browser opens upon server start
+    port: 3000 // this sets a default port to 3000
   },
   preview: {
-    // this ensures that the browser opens upon preview start
-    open: true,
-    // this sets a default port to 3000
-    port: 3000
+    open: true, // this ensures that the browser opens upon preview start
+    port: 3000 // this sets a default port to 3000
   },
   build: {
+    chunkSizeWarningLimit: 1000, // Adjust the chunk size warning limit
     rollupOptions: {
-      external: ['pages/portfolio/BuyPortfolios'] // Mark the module as external to avoid resolution issues
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return id.toString().split('node_modules/')[1].split('/')[0].toString();
+          }
+        }
+      }
     }
   }
 });
