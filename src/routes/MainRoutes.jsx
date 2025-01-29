@@ -7,7 +7,7 @@ const DashboardDefault = Loadable(lazy(() => import('pages/dashboard/index')));
 const AIBaskets = Loadable(lazy(() => import('pages/portfolio/AIBaskets')));
 const CorrelatedStocks = Loadable(lazy(() => import('pages/portfolio/CorrelatedStocks')));
 const BuyPortfolios = Loadable(lazy(() => import('pages/portfolio/BuyPortfolios')));
-const MomentumStocks = Loadable(lazy(() => import('pages/portfolio/MomentumStocks')));
+const MomentumStocks = Loadable(lazy(() => import('../pages/portfolio/MomentumStocks')));
 const PeopleInvest = Loadable(lazy(() => import('pages/portfolio/PeopleInvest')));
 const CompareIndex = Loadable(lazy(() => import('pages/portfolio/CompareIndex')));
 
