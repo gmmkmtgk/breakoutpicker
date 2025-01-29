@@ -1,8 +1,8 @@
 import React from 'react';
 import MainCard from 'components/MainCard';
 
-const MomentumStocks = () => {
+const StocksMomentum = () => {
   return <MainCard title="Momentum Stocks"></MainCard>;
 };
 
-export default MomentumStocks;
+export default StocksMomentum;

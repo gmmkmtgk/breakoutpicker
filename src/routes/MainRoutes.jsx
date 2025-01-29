@@ -7,7 +7,7 @@ const DashboardDefault = Loadable(lazy(() => import('pages/dashboard/index.jsx')
 const AIBaskets = Loadable(lazy(() => import('pages/portfolio/AIBaskets.jsx')));
 const CorrelatedStocks = Loadable(lazy(() => import('pages/portfolio/CorrelatedStocks.jsx')));
 const BuyPortfolios = Loadable(lazy(() => import('pages/portfolio/BuyPortfolios.jsx')));
-const MomentumStocks = Loadable(lazy(() => import('pages/portfolio/momentumStocks.jsx')));
+const StocksMomentum = Loadable(lazy(() => import('pages/portfolio/StocksMomentum.jsx')));
 const PeopleInvest = Loadable(lazy(() => import('pages/portfolio/PeopleInvest.jsx')));
 const CompareIndex = Loadable(lazy(() => import('pages/portfolio/CompareIndex.jsx')));
 
@@ -54,7 +54,7 @@ const MainRoutes = {
     },
     {
       path: 'momentum-stocks',
-      element: <MomentumStocks />
+      element: <StocksMomentum />
     },
     {
       path: 'people-invest',
