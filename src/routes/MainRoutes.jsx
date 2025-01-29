@@ -9,6 +9,7 @@ const CorrelatedStocks = Loadable(lazy(() => import('pages/portfolio/CorrelatedS
 const BuyPortfolios = Loadable(lazy(() => import('pages/portfolio/BuyPortfolios')));
 const MomentumStocks = Loadable(lazy(() => import('pages/portfolio/MomentumStocks')));
 const PeopleInvest = Loadable(lazy(() => import('pages/portfolio/PeopleInvest')));
+const CompareIndex = Loadable(lazy(() => import('pages/portfolio/CompareIndex')));
 
 const Brokers = Loadable(lazy(() => import('pages/miscellaneous/Brokers')));
 const Terms = Loadable(lazy(() => import('pages/miscellaneous/Terms')));
@@ -27,6 +28,10 @@ const News = Loadable(lazy(() => import('pages/research/News')));
 const WaBot = Loadable(lazy(() => import('pages/research/WaBot')));
 
 const AthIpos = Loadable(lazy(() => import('pages/ipos/ath-ipos')));
+
+const Voices = Loadable(lazy(() => import('pages/community/voices')));
+const Videos = Loadable(lazy(() => import('pages/community/videos')));
+const Shorts = Loadable(lazy(() => import('pages/community/shorts')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -114,6 +119,22 @@ const MainRoutes = {
     {
       path: 'contactus',
       element: <Contactus />
+    },
+    {
+      path: 'compare-index',
+      element: <CompareIndex />
+    },
+    {
+      path: 'voices',
+      element: <Voices />
+    },
+    {
+      path: 'videos',
+      element: <Videos />
+    },
+    {
+      path: 'shorts',
+      element: <Shorts />
     }
   ]
 };

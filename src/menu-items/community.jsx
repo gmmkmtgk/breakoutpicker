@@ -19,24 +19,21 @@ const community = {
       title: 'Voices',
       type: 'item',
       url: '/voices',
-      icon: icons.LoginOutlined,
-      target: true
+      icon: icons.LoginOutlined
     },
     {
       id: 'videos',
       title: 'Videos',
       type: 'item',
       url: '/videos',
-      icon: icons.ProfileOutlined,
-      target: true
+      icon: icons.ProfileOutlined
     },
     {
       id: 'shorts',
       title: 'Shorts',
       type: 'item',
       url: '/shorts',
-      icon: icons.ProfileOutlined,
-      target: true
+      icon: icons.ProfileOutlined
     }
   ]
 };

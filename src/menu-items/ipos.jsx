@@ -28,8 +28,7 @@ const ipos = {
       title: 'ATH Crossing IPOs',
       type: 'item',
       url: '/ath-ipos',
-      icon: icons.RiseOutlined,
-      target: true
+      icon: icons.RiseOutlined
     }
   ]
 };

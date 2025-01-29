@@ -20,24 +20,21 @@ const miscellaneous = {
       title: 'Indian Brokers',
       type: 'item',
       url: '/brokers',
-      icon: icons.LoginOutlined,
-      target: true
+      icon: icons.LoginOutlined
     },
     {
       id: 'contact',
       title: 'Contact Us',
       type: 'item',
       url: '/contactus',
-      icon: icons.ContactsOutlined,
-      target: true
+      icon: icons.ContactsOutlined
     },
     {
       id: 'terms',
       title: 'T&C',
       type: 'item',
       url: '/t&c',
-      icon: icons.ContactsOutlined,
-      target: true
+      icon: icons.ContactsOutlined
     }
   ]
 };
