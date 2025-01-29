@@ -13,7 +13,7 @@ const CompareIndex = Loadable(lazy(() => import('pages/portfolio/CompareIndex.js
 
 const Brokers = Loadable(lazy(() => import('pages/miscellaneous/Brokers.jsx')));
 const Terms = Loadable(lazy(() => import('pages/miscellaneous/Terms.jsx')));
-const Contactus = Loadable(lazy(() => import('pages/miscellaneous/Contactus.jsx')));
+const ContactUs = Loadable(lazy(() => import('pages/miscellaneous/ContactUs.jsx')));
 
 const Courses = Loadable(lazy(() => import('pages/learn/Courses.jsx')));
 const Books = Loadable(lazy(() => import('pages/learn/Books.jsx')));
@@ -118,7 +118,7 @@ const MainRoutes = {
     },
     {
       path: 'contactus',
-      element: <Contactus />
+      element: <ContactUs />
     },
     {
       path: 'compare-index',
