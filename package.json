@@ -1,13 +1,7 @@
 {
-  "name": "mantis--react-admin-template",
-  "version": "1.3.0",
+  "name": "breakoutpicker",
+  "version": "1.0.0",
   "private": true,
-  "homepage": "https://mantisdashboard.io/",
-  "author": {
-    "name": "CodedThemes",
-    "email": "codedthemes@gmail.com",
-    "url": "https://codedthemes.com/"
-  },
   "scripts": {
     "start": "vite",
     "build": "vite build",
