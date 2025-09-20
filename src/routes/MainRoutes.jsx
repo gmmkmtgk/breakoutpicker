@@ -33,6 +33,9 @@ const Voices = Loadable(lazy(() => import('pages/community/Voices.jsx')));
 const Videos = Loadable(lazy(() => import('pages/community/Videos.jsx')));
 const Shorts = Loadable(lazy(() => import('pages/community/Shorts.jsx')));
 
+const Yoga = Loadable(lazy(() => import('pages/health/Yoga.jsx')));
+const Pranayam = Loadable(lazy(() => import('pages/health/Pranayam.jsx')));
+
 // ==============================|| MAIN ROUTING ||============================== //
 
 // const MainRoutes ={};
@@ -135,6 +138,14 @@ const MainRoutes = {
     {
       path: 'shorts',
       element: <Shorts />
+    },
+    {
+      path: 'yoga',
+      element: <Yoga />
+    },
+    {
+      path: 'pranayam',
+      element: <Pranayam />
     }
   ]
 };

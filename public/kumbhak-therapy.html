@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breathing Exercise Program</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            overflow-x: hidden;
+        }
+
+
+        .sidebar {
+            width: 280px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            padding: 20px;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1500;
+            box-shadow: 2px 0 20px rgba(0, 0, 0, 0.3);
+            left: 0;
+            top: 0;
+        }
+
+
+        .sidebar.hidden {
+            transform: translateX(-100%);
+        }
+
+
+        .sidebar.visible {
+            transform: translateX(0);
+        }
+
+
+        .sidebar-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            z-index: 1600;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(15px);
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+
+        .sidebar-toggle.active {
+            left: 300px;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            border-color: #4CAF50;
+            transform: none;
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.4);
+        }
+
+
+        .sidebar-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+        }
+
+
+        .sidebar-toggle.active:hover {
+            transform: scale(1.05);
+        }
+
+
+        .toggle-icon {
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+
+        .sidebar-toggle.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+
+        .main-content.full-width {
+            margin-left: 0;
+        }
+
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+
+        h1 {
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+
+        .status-display {
+            font-size: 3em;
+            margin: 30px 0;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+
+        .info-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+
+        .info-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+
+        .info-box h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+
+
+        .info-box .value {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+
+        .controls {
+            margin-top: 30px;
+        }
+
+
+        button {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+
+        button:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+
+        .stop-btn {
+            background: linear-gradient(45deg, #f44336, #d32f2f);
+        }
+
+
+        .breathing-circle {
+            width: 200px;
+            height: 200px;
+            border: 4px solid rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            margin: 20px auto;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+
+        .breathing-circle.inhale {
+            transform: scale(1.2);
+            background: rgba(76, 175, 80, 0.3);
+            border-color: #4CAF50;
+        }
+
+
+        .breathing-circle.exhale {
+            transform: scale(0.8);
+            background: rgba(33, 150, 243, 0.3);
+            border-color: #2196F3;
+        }
+
+
+        .breathing-circle.hold {
+            background: rgba(255, 152, 0, 0.3);
+            border-color: #FF9800;
+        }
+
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #2196F3);
+            width: 0%;
+            transition: width 0.1s ease;
+            border-radius: 5px;
+        }
+
+
+        .time-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+
+        .time-box {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+
+        .time-box h3 {
+            margin: 0 0 8px 0;
+            font-size: 0.9em;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+
+        .time-value {
+            font-size: 1.2em;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+        }
+
+
+        .level-selector {
+            margin-bottom: 30px;
+        }
+
+
+        .level-selector h3 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            color: rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+        }
+
+
+        .level-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+
+        .level-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+
+        .level-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+
+        .level-btn.active {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            border-color: #4CAF50;
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+        }
+
+
+        .level-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+
+        .sidebar-stats {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+
+        .sidebar-stats h4 {
+            margin: 0 0 10px 0;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+
+        .header-timing {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            padding: 15px 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1200;
+        }
+
+
+        .timing-row {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            font-size: 0.9em;
+        }
+
+
+        .timing-item {
+            text-align: center;
+        }
+
+
+        .timing-label {
+            font-size: 0.7em;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+
+
+        .timing-value {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                transform: translateX(-100%);
+            }
+
+
+            .sidebar.visible {
+                transform: translateX(0);
+            }
+
+
+            .main-content {
+                margin-left: 0;
+            }
+
+
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+
+
+            .header-timing {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-bottom: 20px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+
+            .timing-row {
+                justify-content: space-around;
+                gap: 10px;
+            }
+
+
+            .level-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+            }
+
+
+            .level-btn {
+                padding: 10px 6px;
+                font-size: 0.8em;
+            }
+
+
+            h1 {
+                font-size: 2em;
+            }
+
+
+            .breathing-circle {
+                width: 150px;
+                height: 150px;
+                font-size: 1em;
+            }
+
+
+            .status-display {
+                font-size: 2em;
+            }
+
+
+            .sidebar-toggle.active {
+                left: calc(100% - 70px);
+            }
+        }
+
+
+        /* Voice Toggle Styles */
+        .voice-toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+
+        .voice-toggle {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 28px;
+        }
+
+
+        .voice-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: 0.3s;
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.3s;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+
+        .voice-toggle input:checked + .toggle-slider {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            border-color: #4CAF50;
+        }
+
+
+        .voice-toggle input:checked + .toggle-slider:before {
+            transform: translateX(22px);
+        }
+
+
+        .toggle-label {
+            flex: 1;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+
+            .timing-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+
+            .level-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+
+            .breathing-circle {
+                width: 120px;
+                height: 120px;
+            }
+
+
+            .status-display {
+                font-size: 1.5em;
+                min-height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">
+        <span class="toggle-icon">☰</span>
+    </button>
+
+
+    <div class="header-timing">
+        <div class="timing-row">
+            <div class="timing-item">
+                <div class="timing-label">Current</div>
+                <div class="timing-value" id="currentTime">--:--:--</div>
+            </div>
+            <div class="timing-item">
+                <div class="timing-label">Started</div>
+                <div class="timing-value" id="sessionStart">--:--:--</div>
+            </div>
+            <div class="timing-item">
+                <div class="timing-label">Elapsed</div>
+                <div class="timing-value" id="elapsedTime">00:00</div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="sidebar" id="sidebar">
+        <div class="level-selector">
+            <h3>🎯 Jump to Level</h3>
+            <div class="level-grid" id="levelGrid">
+                <!-- Level buttons will be generated here -->
+            </div>
+        </div>
+
+
+        <div class="sidebar-stats">
+            <h4>📊 Current Session</h4>
+            <div class="stat-item">
+                <span>Level</span>
+                <span id="sidebarLevel">1</span>
+            </div>
+            <div class="stat-item">
+                <span>Round</span>
+                <span id="sidebarRound">0/12</span>
+            </div>
+            <div class="stat-item">
+                <span>Hold Time</span>
+                <span id="sidebarHold">3s</span>
+            </div>
+            <div class="stat-item">
+                <span>Inhale</span>
+                <span>3.3s</span>
+            </div>
+            <div class="stat-item">
+                <span>Exhale</span>
+                <span>3.7s</span>
+            </div>
+        </div>
+
+
+        <div class="sidebar-stats">
+            <h4>🔄 Breathing Pattern</h4>
+            <div style="text-align: center; margin-top: 10px; font-size: 0.9em; line-height: 1.5;">
+                <div>Inhale → Hold → Exhale</div>
+                <div style="opacity: 0.7; margin-top: 5px;">12 rounds per level</div>
+                <div style="opacity: 0.7;">Hold time: 3s to 36s</div>
+            </div>
+        </div>
+
+
+        <div class="sidebar-stats">
+            <h4>🎤 Voice Coaching</h4>
+            <div class="voice-toggle-container">
+                <label class="voice-toggle">
+                    <input type="checkbox" id="voiceCoachingToggle" onchange="toggleVoiceCoaching()">
+                    <span class="toggle-slider"></span>
+                </label>
+                <div class="toggle-label">
+                    <span id="voiceToggleLabel">Enable Voice Coach</span>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 10px; font-size: 0.8em; line-height: 1.3; opacity: 0.7;">
+                Get motivational guidance during breathing exercises
+            </div>
+        </div>
+    </div>
+
+
+    <div class="main-content" id="mainContent">
+        <div class="container">
+            <h1>🫁 Breathing Exercise</h1>
+
+
+        <div class="breathing-circle" id="breathingCircle">
+            Ready
+        </div>
+
+
+        <div class="status-display" id="statusDisplay">
+            Press Start to Begin
+        </div>
+
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+
+        <div class="info-panel">
+            <div class="info-box">
+                <h3>Level</h3>
+                <div class="value" id="currentLevel">1</div>
+            </div>
+            <div class="info-box">
+                <h3>Round</h3>
+                <div class="value" id="currentRound">0/12</div>
+            </div>
+            <div class="info-box">
+                <h3>Hold Time</h3>
+                <div class="value" id="holdTime">3s</div>
+            </div>
+        </div>
+
+
+        <div class="controls">
+            <button id="startBtn" onclick="startExercise()">Start Exercise</button>
+            <button id="pauseBtn" onclick="pauseExercise()" disabled>Pause</button>
+            <button id="stopBtn" onclick="stopExercise()" class="stop-btn" disabled>Stop</button>
+        </div>
+    </div>
+
+
+    <script>
+        class BreathingExercise {
+            constructor() {
+                this.audioContext = null;
+                this.currentLevel = 1;
+                this.currentRound = 0;
+                this.isRunning = false;
+                this.isPaused = false;
+                this.currentPhase = 'ready'; // ready, inhale, exhale, hold
+                this.timer = null;
+                this.phaseStartTime = 0;
+                this.totalLevels = 12; // 3s to 36s in 3s increments
+                this.sessionStartTime = null;
+                this.clockUpdateInterval = null;
+                this.voiceCoachingEnabled = true;
+                this.speechSynth = window.speechSynthesis;
+                this.voiceCoachingTimers = [];
+
+
+                // Timing configurations - inhale is always shorter than exhale
+                this.inhaleTime = 3300; // 3 seconds
+                this.exhaleTime = 3700; // 5 seconds
+                this.roundsPerLevel = 12;
+
+
+                this.initAudio();
+                this.updateDisplay();
+                this.startClock();
+                this.generateLevelButtons();
+            }
+
+
+            async initAudio() {
+                try {
+                    this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                } catch (error) {
+                    console.log('Audio not available:', error);
+                }
+            }
+
+
+            getHoldTime() {
+                return this.currentLevel * 3; // 3, 6, 9, 12, ... 36 seconds
+            }
+
+
+            playSound(frequency, duration = 200, type = 'sine') {
+                if (!this.audioContext) return;
+
+
+                const oscillator = this.audioContext.createOscillator();
+                const gainNode = this.audioContext.createGain();
+
+
+                oscillator.connect(gainNode);
+                gainNode.connect(this.audioContext.destination);
+
+
+                oscillator.frequency.value = frequency;
+                oscillator.type = type;
+
+
+                gainNode.gain.setValueAtTime(0.3, this.audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + duration / 1000);
+
+
+                oscillator.start();
+                oscillator.stop(this.audioContext.currentTime + duration / 1000);
+            }
+
+
+            playInhaleSound() {
+                this.playSound(440, 300); // A4 note
+            }
+
+
+            playExhaleSound() {
+                this.playSound(330, 300); // E4 note
+            }
+
+
+            playHoldSound() {
+                this.playSound(523, 200); // C5 note
+            }
+
+
+            playCompletionSound() {
+                // Play a pleasant chord progression
+                setTimeout(() => this.playSound(523, 150), 0);   // C5
+                setTimeout(() => this.playSound(659, 150), 100); // E5
+                setTimeout(() => this.playSound(784, 150), 200); // G5
+                setTimeout(() => this.playSound(1047, 300), 300); // C6
+            }
+
+
+            speak(text, delay = 0) {
+                if (!this.voiceCoachingEnabled || !this.speechSynth) return;
+
+
+                setTimeout(() => {
+                    if (!this.isRunning) return;
+
+
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.rate = 0.8;
+                    utterance.pitch = 1.1;
+                    utterance.volume = 0.7;
+
+
+                    // Try to use a female voice
+                    const voices = this.speechSynth.getVoices();
+                    const femaleVoice = voices.find(voice =>
+                        voice.name.toLowerCase().includes('female') ||
+                        voice.name.toLowerCase().includes('woman') ||
+                        voice.name.toLowerCase().includes('zira') ||
+                        voice.name.toLowerCase().includes('susan') ||
+                        voice.name.toLowerCase().includes('samantha')
+                    );
+
+
+                    if (femaleVoice) {
+                        utterance.voice = femaleVoice;
+                    }
+
+
+                    this.speechSynth.speak(utterance);
+                }, delay);
+            }
+
+
+            clearVoiceTimers() {
+                this.voiceCoachingTimers.forEach(timer => clearTimeout(timer));
+                this.voiceCoachingTimers = [];
+                if (this.speechSynth) {
+                    this.speechSynth.cancel();
+                }
+            }
+
+
+            scheduleMotivationalPhrases(phase, duration) {
+                if (!this.voiceCoachingEnabled) return;
+
+
+                this.clearVoiceTimers();
+
+
+                const phrases = this.getMotivationalPhrases(phase, duration);
+
+
+                phrases.forEach(({text, timing}) => {
+                    const delay = timing * duration;
+                    const timer = setTimeout(() => {
+                        if (this.isRunning && this.currentPhase === phase) {
+                            this.speak(text);
+                        }
+                    }, delay);
+                    this.voiceCoachingTimers.push(timer);
+                });
+            }
+
+
+            getMotivationalPhrases(phase, duration) {
+                const holdTime = this.getHoldTime();
+
+
+                switch (phase) {
+                    case 'inhale':
+                        return [
+                            {text: "Breathe in", timing: 0}
+                        ];
+
+
+                    case 'exhale':
+                        return [
+                            {text: "Exhale slowly", timing: 0}
+                        ];
+
+
+                    case 'hold':
+                        const phrases = [
+                            {text: "Hold it", timing: 0},
+                            {text: "You're doing great", timing: 0.2}
+                        ];
+
+
+                        // Add percentage-based encouragement
+                        if (holdTime >= 6) {
+                            phrases.push({text: "Stay strong", timing: 0.4});
+                        }
+                        if (holdTime >= 12) {
+                            phrases.push({text: "You're there", timing: 0.6});
+                        }
+                        if (holdTime >= 18) {
+                            phrases.push({text: "Almost there", timing: 0.8});
+                            phrases.push({text: "Just a few more seconds", timing: 0.9});
+                        }
+
+
+                        return phrases;
+
+
+                    default:
+                        return [];
+                }
+            }
+
+
+            startClock() {
+                this.updateClock();
+                this.clockUpdateInterval = setInterval(() => {
+                    this.updateClock();
+                }, 1000);
+            }
+
+
+            updateClock() {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString();
+                document.getElementById('currentTime').textContent = timeString;
+
+
+                if (this.sessionStartTime) {
+                    const elapsed = Math.floor((now - this.sessionStartTime) / 1000);
+                    const minutes = Math.floor(elapsed / 60);
+                    const seconds = elapsed % 60;
+                    document.getElementById('elapsedTime').textContent =
+                        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                }
+            }
+
+
+            generateLevelButtons() {
+                const grid = document.getElementById('levelGrid');
+                grid.innerHTML = '';
+
+
+                for (let i = 1; i <= this.totalLevels; i++) {
+                    const button = document.createElement('button');
+                    button.className = 'level-btn';
+                    button.textContent = `${i} (${i * 3}s)`;
+                    button.onclick = () => this.jumpToLevel(i);
+
+
+                    if (i === this.currentLevel) {
+                        button.classList.add('active');
+                    }
+
+
+                    grid.appendChild(button);
+                }
+            }
+
+
+            jumpToLevel(level) {
+                if (this.isRunning) {
+                    if (!confirm(`Jump to level ${level}? This will reset your current progress.`)) {
+                        return;
+                    }
+                    this.stop();
+                }
+
+
+                this.currentLevel = level;
+                this.currentRound = 0;
+                this.updateDisplay();
+                this.updateLevelButtons();
+            }
+
+
+            updateLevelButtons() {
+                const buttons = document.querySelectorAll('.level-btn');
+                buttons.forEach((btn, index) => {
+                    btn.classList.toggle('active', index + 1 === this.currentLevel);
+                    btn.disabled = this.isRunning && !this.isPaused;
+                });
+            }
+
+
+            updateDisplay() {
+                document.getElementById('currentLevel').textContent = this.currentLevel;
+                document.getElementById('currentRound').textContent = `${this.currentRound}/${this.roundsPerLevel}`;
+                document.getElementById('holdTime').textContent = `${this.getHoldTime()}s`;
+
+
+                // Update sidebar stats
+                document.getElementById('sidebarLevel').textContent = this.currentLevel;
+                document.getElementById('sidebarRound').textContent = `${this.currentRound}/${this.roundsPerLevel}`;
+                document.getElementById('sidebarHold').textContent = `${this.getHoldTime()}s`;
+
+
+                this.updateLevelButtons();
+            }
+
+
+            updateProgress(elapsed, total) {
+                const percentage = Math.min((elapsed / total) * 100, 100);
+                document.getElementById('progressFill').style.width = `${percentage}%`;
+            }
+
+
+            setPhase(phase, duration) {
+                this.currentPhase = phase;
+                this.phaseStartTime = Date.now();
+                const circle = document.getElementById('breathingCircle');
+                const display = document.getElementById('statusDisplay');
+
+
+                circle.className = 'breathing-circle ' + phase;
+
+
+                switch (phase) {
+                    case 'inhale':
+                        circle.textContent = 'Inhale';
+                        display.textContent = 'Breathe In';
+                        if (!this.voiceCoachingEnabled) {
+                            this.playInhaleSound();
+                        }
+                        break;
+                    case 'exhale':
+                        circle.textContent = 'Exhale';
+                        display.textContent = 'Breathe Out';
+                        if (!this.voiceCoachingEnabled) {
+                            this.playExhaleSound();
+                        }
+                        break;
+                    case 'hold':
+                        circle.textContent = 'Hold';
+                        display.textContent = `Hold for ${this.getHoldTime()}s`;
+                        if (!this.voiceCoachingEnabled) {
+                            this.playHoldSound();
+                        }
+                        break;
+                    case 'ready':
+                        circle.textContent = 'Ready';
+                        display.textContent = 'Ready to Start';
+                        break;
+                    case 'completed':
+                        circle.textContent = '✓';
+                        display.textContent = 'Exercise Complete!';
+                        this.playCompletionSound();
+                        if (this.voiceCoachingEnabled) {
+                            this.speak("Excellent work! You've completed the exercise.");
+                        }
+                        break;
+                }
+
+
+                // Schedule voice coaching for this phase
+                if (duration && ['inhale', 'exhale', 'hold'].includes(phase)) {
+                    this.scheduleMotivationalPhrases(phase, duration);
+                }
+
+
+                if (duration && this.isRunning) {
+                    this.timer = setTimeout(() => {
+                        if (this.isRunning && !this.isPaused) {
+                            this.nextPhase();
+                        }
+                    }, duration);
+                }
+
+
+                // Update progress bar
+                if (duration) {
+                    const updateProgress = () => {
+                        if (!this.isRunning || this.isPaused) return;
+
+
+                        const elapsed = Date.now() - this.phaseStartTime;
+                        this.updateProgress(elapsed, duration);
+
+
+                        if (elapsed < duration) {
+                            requestAnimationFrame(updateProgress);
+                        }
+                    };
+                    updateProgress();
+                }
+            }
+
+
+            nextPhase() {
+                if (!this.isRunning) return;
+
+
+                switch (this.currentPhase) {
+                    case 'ready':
+                        // Start first round
+                        this.currentRound++;
+                        this.updateDisplay();
+                        this.setPhase('inhale', this.inhaleTime);
+                        break;
+                    case 'inhale':
+                        this.setPhase('hold', this.getHoldTime() * 1000);
+                        break;
+                    case 'hold':
+                        this.setPhase('exhale', this.exhaleTime);
+                        break;
+                    case 'exhale':
+                        if (this.currentRound >= this.roundsPerLevel) {
+                            // Level complete
+                            this.currentLevel++;
+                            this.currentRound = 0;
+
+
+                            if (this.currentLevel > this.totalLevels) {
+                                // Exercise complete
+                                this.completeExercise();
+                                return;
+                            }
+
+
+                            this.updateDisplay();
+                        }
+                        // Start next round
+                        this.currentRound++;
+                        this.updateDisplay();
+                        this.setPhase('inhale', this.inhaleTime);
+                        break;
+                }
+            }
+
+
+            start() {
+                if (this.isPaused) {
+                    this.isPaused = false;
+                    this.nextPhase();
+                } else {
+                    this.isRunning = true;
+                    // Don't reset currentLevel - preserve the selected level
+                    this.currentRound = 0;
+                    this.sessionStartTime = new Date();
+                    document.getElementById('sessionStart').textContent = this.sessionStartTime.toLocaleTimeString();
+                    this.updateDisplay();
+                    this.setPhase('inhale', this.inhaleTime);
+                }
+
+
+                document.getElementById('startBtn').disabled = true;
+                document.getElementById('pauseBtn').disabled = false;
+                document.getElementById('stopBtn').disabled = false;
+            }
+
+
+            pause() {
+                this.isPaused = true;
+                if (this.timer) {
+                    clearTimeout(this.timer);
+                    this.timer = null;
+                }
+
+
+                document.getElementById('startBtn').disabled = false;
+                document.getElementById('pauseBtn').disabled = true;
+                document.getElementById('statusDisplay').textContent = 'Paused';
+            }
+
+
+            stop() {
+                this.isRunning = false;
+                this.isPaused = false;
+                if (this.timer) {
+                    clearTimeout(this.timer);
+                    this.timer = null;
+                }
+
+
+                this.clearVoiceTimers();
+
+
+                this.currentLevel = 1;
+                this.currentRound = 0;
+                this.sessionStartTime = null;
+                document.getElementById('sessionStart').textContent = '--:--:--';
+                document.getElementById('elapsedTime').textContent = '00:00';
+                this.updateDisplay();
+                this.setPhase('ready');
+                this.updateProgress(0, 100);
+
+
+                document.getElementById('startBtn').disabled = false;
+                document.getElementById('pauseBtn').disabled = true;
+                document.getElementById('stopBtn').disabled = true;
+            }
+
+
+            completeExercise() {
+                this.isRunning = false;
+                this.setPhase('completed');
+                this.updateProgress(100, 100);
+
+
+                document.getElementById('startBtn').disabled = false;
+                document.getElementById('pauseBtn').disabled = true;
+                document.getElementById('stopBtn').disabled = true;
+
+
+                // Reset for next session
+                setTimeout(() => {
+                    this.currentLevel = 1;
+                    this.currentRound = 0;
+                    this.updateDisplay();
+                    this.setPhase('ready');
+                    this.updateProgress(0, 100);
+                }, 3000);
+            }
+        }
+
+
+        // Global instance
+        const exercise = new BreathingExercise();
+
+
+        function startExercise() {
+            exercise.start();
+        }
+
+
+        function pauseExercise() {
+            exercise.pause();
+        }
+
+
+        function stopExercise() {
+            exercise.stop();
+        }
+
+
+        function toggleVoiceCoaching() {
+            const toggle = document.getElementById('voiceCoachingToggle');
+            const label = document.getElementById('voiceToggleLabel');
+
+
+            exercise.voiceCoachingEnabled = toggle.checked;
+
+
+            if (toggle.checked) {
+                label.textContent = 'Voice Coach: ON';
+                // Test the voice coaching
+                exercise.speak("Voice coaching enabled");
+            } else {
+                label.textContent = 'Voice Coach: OFF';
+                exercise.clearVoiceTimers();
+            }
+        }
+
+
+        // Sidebar toggle functionality
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+            const toggleBtn = document.getElementById('sidebarToggle');
+
+
+            if (sidebar.classList.contains('hidden')) {
+                // Show sidebar
+                sidebar.classList.remove('hidden');
+                sidebar.classList.add('visible');
+                mainContent.classList.remove('full-width');
+                toggleBtn.classList.add('active');
+                toggleBtn.setAttribute('aria-label', 'Close sidebar');
+
+
+                // Change icon to X when open
+                toggleBtn.querySelector('.toggle-icon').textContent = '✕';
+            } else {
+                // Hide sidebar
+                sidebar.classList.add('hidden');
+                sidebar.classList.remove('visible');
+                mainContent.classList.add('full-width');
+                toggleBtn.classList.remove('active');
+                toggleBtn.setAttribute('aria-label', 'Open sidebar');
+
+
+                // Change icon back to hamburger when closed
+                toggleBtn.querySelector('.toggle-icon').textContent = '☰';
+            }
+        }
+
+
+        // Handle audio context requirement for user interaction
+        document.addEventListener('click', async () => {
+            if (exercise.audioContext && exercise.audioContext.state === 'suspended') {
+                await exercise.audioContext.resume();
+            }
+        }, { once: true });
+
+
+        // Close sidebar on mobile when clicking outside
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                const sidebar = document.getElementById('sidebar');
+                const toggle = document.querySelector('.sidebar-toggle');
+
+
+                if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
+                    sidebar.classList.add('hidden');
+                    sidebar.classList.remove('visible');
+                    document.getElementById('mainContent').classList.add('full-width');
+
+
+                    // Reset toggle button
+                    const toggleBtn = document.getElementById('sidebarToggle');
+                    toggleBtn.classList.remove('active');
+                    toggleBtn.querySelector('.toggle-icon').textContent = '☰';
+                    toggleBtn.setAttribute('aria-label', 'Open sidebar');
+                }
+            }
+        });
+
+
+        // Initialize sidebar state on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleBtn = document.getElementById('sidebarToggle');
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+
+
+            // Always start with sidebar closed and proper button state
+            sidebar.classList.add('hidden');
+            mainContent.classList.add('full-width');
+            toggleBtn.querySelector('.toggle-icon').textContent = '☰';
+            toggleBtn.setAttribute('aria-label', 'Open sidebar');
+            toggleBtn.classList.remove('active');
+
+
+            // Set voice coaching toggle to ON by default
+            const voiceToggle = document.getElementById('voiceCoachingToggle');
+            const voiceLabel = document.getElementById('voiceToggleLabel');
+            voiceToggle.checked = true;
+            voiceLabel.textContent = 'Voice Coach: ON';
+        });
+    </script>
+</body>
+</html>
