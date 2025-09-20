@@ -8,7 +8,7 @@ import MinimalLayout from 'layout/MinimalLayout';
 
 // render - Google OAuth login (same for both login and register)
 const AuthLogin = Loadable(lazy(() => import('pages/authentication/login')));
-const GoogleCallback = Loadable(lazy(() => import('pages/authentication/GoogleCallback')));
+//const GoogleCallback = Loadable(lazy(() => import('pages/authentication/GoogleCallback')));
 
 
 // ==============================|| AUTH ROUTING ||============================== //
@@ -28,12 +28,12 @@ const LoginRoutes = {
     },
     {
       path: '/signup',
-      element: <AuthLogin />
-    },
-    {
-      path: '/auth/callback',
-      element: <GoogleCallback />
-    }
+      element: <AuthLogin />}
+    // },
+    // {
+    //   path: '/auth/callback',
+    //   element: <GoogleCallback />
+    // }
   ]
 };
 
