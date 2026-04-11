@@ -6,7 +6,6 @@ const icons = {
   LoginOutlined,
   ProfileOutlined
 };
-
 // ==============================|| MENU ITEMS - EXTRA PAGES ||============================== //
 
 const community = {

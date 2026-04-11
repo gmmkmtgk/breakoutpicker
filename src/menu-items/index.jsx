@@ -1,7 +1,5 @@
 // project import
-import dashboard from './dashboard';
-import researchs from './research';
-import portfolio from './portfolio';
+import researchs from './research';import portfolio from './portfolio';
 import learn from './learn';
 import ipos from './ipos';
 import community from './community';
@@ -13,8 +11,8 @@ import health from './health';
 // ==============================|| MENU ITEMS ||============================== //
 
 const menuItems = {
+  // Breaks lives at `/` only — not listed in the drawer (main product surface).
   items: [portfolio, researchs, learn, ipos, community, health, games, miscellaneous, algotrading]
 };
-//items: [dashboard, pages, utilities, support]
 
 export default menuItems;

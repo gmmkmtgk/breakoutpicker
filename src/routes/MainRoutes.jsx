@@ -1,8 +1,8 @@
 /* eslint-disable */
 import { lazy } from 'react';
+import { Navigate } from 'react-router-dom';
 import Loadable from 'components/Loadable';
 import Dashboard from 'layout/Dashboard';
-const DashboardDefault = Loadable(lazy(() => import('pages/dashboard/index.jsx')));
 
 const AIBaskets = Loadable(lazy(() => import('pages/portfolio/AIBaskets.jsx')));
 const CorrelatedStocks = Loadable(lazy(() => import('pages/portfolio/CorrelatedStocks.jsx')));
@@ -29,6 +29,7 @@ const WaBot = Loadable(lazy(() => import('pages/research/WaBot.jsx')));
 
 const AthIpos = Loadable(lazy(() => import('pages/ipos/AthIpos.jsx')));
 
+const Breaks = Loadable(lazy(() => import('pages/community/Breaks.jsx')));
 const Voices = Loadable(lazy(() => import('pages/community/Voices.jsx')));
 const Videos = Loadable(lazy(() => import('pages/community/Videos.jsx')));
 const Shorts = Loadable(lazy(() => import('pages/community/Shorts.jsx')));
@@ -45,7 +46,11 @@ const MainRoutes = {
   children: [
     {
       path: '/',
-      element: <DashboardDefault />
+      element: <Breaks />
+    },
+    {
+      path: 'breaks',
+      element: <Navigate to="/" replace />
     },
     {
       path: 'ai-baskets',

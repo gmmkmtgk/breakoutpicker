@@ -34,7 +34,9 @@ export default function NavItem({ item, level }) {
   const itemIcon = item.icon ? <Icon style={{ fontSize: drawerOpen ? '1rem' : '1.25rem' }} /> : false;
 
   const { pathname } = useLocation();
-  const isSelected = !!matchPath({ path: item.url, end: false }, pathname) || openItem === item.id;
+  // Root menu item must match exactly; end:false would mark "Breaks" active on every route.
+  const matchEnd = item.url === '/';
+  const isSelected = !!matchPath({ path: item.url, end: matchEnd }, pathname) || openItem === item.id;
 
   // active menu item on page load
   useEffect(() => {
