@@ -5,8 +5,10 @@ import Loadable from 'components/Loadable';
 import Dashboard from 'layout/Dashboard';
 
 const AIBaskets = Loadable(lazy(() => import('pages/portfolio/AIBaskets.jsx')));
+const AIBasketDetail = Loadable(lazy(() => import('pages/portfolio/AIBasketDetail.jsx')));
 const CorrelatedStocks = Loadable(lazy(() => import('pages/portfolio/CorrelatedStocks.jsx')));
-const BuyPortfolios = Loadable(lazy(() => import('pages/portfolio/BuyPortfolios.jsx')));
+// Buy Portfolios — to be implemented later
+// const BuyPortfolios = Loadable(lazy(() => import('pages/portfolio/BuyPortfolios.jsx')));
 const StocksMomentum = Loadable(lazy(() => import('pages/portfolio/StocksMomentum.jsx')));
 const PeopleInvest = Loadable(lazy(() => import('pages/portfolio/PeopleInvest.jsx')));
 const CompareIndex = Loadable(lazy(() => import('pages/portfolio/CompareIndex.jsx')));
@@ -53,13 +55,17 @@ const MainRoutes = {
       element: <Navigate to="/" replace />
     },
     {
+      path: 'ai-baskets/:basketId',
+      element: <AIBasketDetail />
+    },
+    {
       path: 'ai-baskets',
       element: <AIBaskets />
     },
-    {
-      path: 'buy-portfolio',
-      element: <BuyPortfolios />
-    },
+    // {
+    //   path: 'buy-portfolio',
+    //   element: <BuyPortfolios />
+    // },
     {
       path: 'momentum-stocks',
       element: <StocksMomentum />

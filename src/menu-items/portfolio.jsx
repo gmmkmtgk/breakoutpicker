@@ -1,12 +1,11 @@
 // assets
-import { MoneyCollectOutlined, OpenAIOutlined, FireOutlined, SlidersOutlined } from '@ant-design/icons';
+import { MoneyCollectOutlined, OpenAIOutlined, FireOutlined } from '@ant-design/icons';
 
 // icons
 const icons = {
   MoneyCollectOutlined,
   OpenAIOutlined,
-  FireOutlined,
-  SlidersOutlined
+  FireOutlined
 };
 
 // ==============================|| MENU ITEMS - SAMPLE PAGE & DOCUMENTATION ||============================== //
@@ -37,13 +36,14 @@ const portfolio = {
       url: '/people-invest',
       icon: icons.MoneyCollectOutlined
     },
-    {
-      id: 'buyportfolio',
-      title: 'Buy Portfolios',
-      type: 'item',
-      url: '/buy-portfolio',
-      icon: icons.SlidersOutlined
-    },
+    // Buy Portfolios — to be implemented later
+    // {
+    //   id: 'buyportfolio',
+    //   title: 'Buy Portfolios',
+    //   type: 'item',
+    //   url: '/buy-portfolio',
+    //   icon: icons.SlidersOutlined
+    // },
     {
       id: 'mstocks',
       title: 'Momentum Stocks',
