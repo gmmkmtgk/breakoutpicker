@@ -17,7 +17,11 @@ const Brokers = Loadable(lazy(() => import('pages/miscellaneous/Brokers.jsx')));
 const Terms = Loadable(lazy(() => import('pages/miscellaneous/Terms.jsx')));
 const ContactUs = Loadable(lazy(() => import('pages/miscellaneous/ContactUs.jsx')));
 
+const CoursesLayout = Loadable(lazy(() => import('pages/learn/CoursesLayout.jsx')));
 const Courses = Loadable(lazy(() => import('pages/learn/Courses.jsx')));
+const CourseDetail = Loadable(lazy(() => import('pages/learn/CourseDetail.jsx')));
+const CourseCart = Loadable(lazy(() => import('pages/learn/CourseCart.jsx')));
+const MyLearning = Loadable(lazy(() => import('pages/learn/MyLearning.jsx')));
 const Books = Loadable(lazy(() => import('pages/learn/Books.jsx')));
 const Workshops = Loadable(lazy(() => import('pages/learn/Workshops.jsx')));
 const Roadmap = Loadable(lazy(() => import('pages/learn/Roadmap.jsx')));
@@ -33,8 +37,16 @@ const AthIpos = Loadable(lazy(() => import('pages/ipos/AthIpos.jsx')));
 
 const Breaks = Loadable(lazy(() => import('pages/community/Breaks.jsx')));
 const Voices = Loadable(lazy(() => import('pages/community/Voices.jsx')));
-const Videos = Loadable(lazy(() => import('pages/community/Videos.jsx')));
+const VideosLayout = Loadable(lazy(() => import('pages/community/VideosLayout.jsx')));
+const VideosHome = Loadable(lazy(() => import('pages/community/VideosHome.jsx')));
+const VideoWatch = Loadable(lazy(() => import('pages/community/VideoWatch.jsx')));
 const Shorts = Loadable(lazy(() => import('pages/community/Shorts.jsx')));
+
+const GamesLayout = Loadable(lazy(() => import('pages/games/GamesLayout.jsx')));
+const GamesHub = Loadable(lazy(() => import('pages/games/GamesHub.jsx')));
+const MarketQuiz = Loadable(lazy(() => import('pages/games/MarketQuiz.jsx')));
+const TickerScramble = Loadable(lazy(() => import('pages/games/TickerScramble.jsx')));
+const BullOrBear = Loadable(lazy(() => import('pages/games/BullOrBear.jsx')));
 
 const Yoga = Loadable(lazy(() => import('pages/health/Yoga.jsx')));
 const Pranayam = Loadable(lazy(() => import('pages/health/Pranayam.jsx')));
@@ -112,7 +124,13 @@ const MainRoutes = {
     },
     {
       path: 'courses',
-      element: <Courses />
+      element: <CoursesLayout />,
+      children: [
+        { index: true, element: <Courses /> },
+        { path: 'cart', element: <CourseCart /> },
+        { path: 'my-learning', element: <MyLearning /> },
+        { path: ':courseId', element: <CourseDetail /> }
+      ]
     },
     {
       path: 'workshops',
@@ -144,11 +162,29 @@ const MainRoutes = {
     },
     {
       path: 'videos',
-      element: <Videos />
+      element: <VideosLayout />,
+      children: [
+        { index: true, element: <VideosHome /> },
+        { path: 'watch/:videoId', element: <VideoWatch /> }
+      ]
     },
     {
       path: 'shorts',
       element: <Shorts />
+    },
+    {
+      path: 'games-1',
+      element: <Navigate to="/games" replace />
+    },
+    {
+      path: 'games',
+      element: <GamesLayout />,
+      children: [
+        { index: true, element: <GamesHub /> },
+        { path: 'market-quiz', element: <MarketQuiz /> },
+        { path: 'ticker-scramble', element: <TickerScramble /> },
+        { path: 'bull-or-bear', element: <BullOrBear /> }
+      ]
     },
     {
       path: 'yoga',

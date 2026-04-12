@@ -1,9 +1,9 @@
 // assets
-import { LoginOutlined, ProfileOutlined, ContactsOutlined } from '@ant-design/icons';
+import { BankOutlined, ProfileOutlined, ContactsOutlined } from '@ant-design/icons';
 
 // icons
 const icons = {
-  LoginOutlined,
+  BankOutlined,
   ProfileOutlined,
   ContactsOutlined
 };
@@ -20,7 +20,7 @@ const miscellaneous = {
       title: 'Indian Brokers',
       type: 'item',
       url: '/brokers',
-      icon: icons.LoginOutlined
+      icon: icons.BankOutlined
     },
     {
       id: 'contact',

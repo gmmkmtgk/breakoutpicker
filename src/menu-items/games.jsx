@@ -1,15 +1,18 @@
 // assets
-import { MoneyCollectOutlined, OpenAIOutlined, FireOutlined, SlidersOutlined } from '@ant-design/icons';
+import QuestionCircleOutlined from '@ant-design/icons/QuestionCircleOutlined';
+import SortAscendingOutlined from '@ant-design/icons/SortAscendingOutlined';
+import ThunderboltOutlined from '@ant-design/icons/ThunderboltOutlined';
+import TrophyOutlined from '@ant-design/icons/TrophyOutlined';
 
 // icons
 const icons = {
-  MoneyCollectOutlined,
-  OpenAIOutlined,
-  FireOutlined,
-  SlidersOutlined
+  TrophyOutlined,
+  QuestionCircleOutlined,
+  SortAscendingOutlined,
+  ThunderboltOutlined
 };
 
-// ==============================|| MENU ITEMS - SAMPLE PAGE & DOCUMENTATION ||============================== //
+// ==============================|| MENU ITEMS - GAMES ||============================== //
 
 const games = {
   id: 'games',
@@ -17,11 +20,32 @@ const games = {
   type: 'group',
   children: [
     {
-      id: 'game1',
-      title: 'Game 1',
+      id: 'games-hub',
+      title: 'Stock Games',
       type: 'item',
-      url: '/games-1',
-      icon: icons.OpenAIOutlined
+      url: '/games',
+      icon: icons.TrophyOutlined
+    },
+    {
+      id: 'games-quiz',
+      title: 'Market Quiz',
+      type: 'item',
+      url: '/games/market-quiz',
+      icon: icons.QuestionCircleOutlined
+    },
+    {
+      id: 'games-ticker',
+      title: 'Ticker Scramble',
+      type: 'item',
+      url: '/games/ticker-scramble',
+      icon: icons.SortAscendingOutlined
+    },
+    {
+      id: 'games-bull',
+      title: 'Bull or Bear',
+      type: 'item',
+      url: '/games/bull-or-bear',
+      icon: icons.ThunderboltOutlined
     }
   ]
 };
