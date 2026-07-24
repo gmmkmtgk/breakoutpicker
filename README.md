@@ -9,3 +9,17 @@ one is specail kind of break that can be ablabled via togelling some button
 now in this special break of evalaution people can post charts (techinal anaysis) they need to cummporsly give image of chart, give a target, give a stop loss, time frame
 
 on the side bar there will be top traders who will be eavlauted on the sucess of these breaks in which charts these special breaks will be sucessfull
+
+## App location
+
+The Vite/React app lives in `web/`.
+
+```bash
+# from repo root
+npm start
+
+# or from web/
+cd web
+npm install --legacy-peer-deps
+npm start
+```
